@@ -1,17 +1,20 @@
-# Проект: Место
+# Project: Mesto
 
-### Обзор
+---
 
-* Figma
-* Картинки
+_Description_
 
-**Figma**
+- It is a part of the large project work.
+- We implemented a responsive design.
+- Media queries were used to achieve the goal.
+- All links on the page smoothly become a little transparent when you hover the mouse.
+- In some blocks we used CSS Grid Layout.
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+_Java Script_
 
-**Картинки**
+- We used _functions_ to make the buttons work.
+- The Document Object Model (DOM) was used to interact with the page.
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+Now you can change the profile data and save it.
 
-Удачи!
+Please, follow the link:

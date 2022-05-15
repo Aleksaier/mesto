@@ -4,12 +4,14 @@ let closeButton = document.querySelector('.popup__close');
 let formElement = document.querySelector('.popup__container');
 let nameInput = document.querySelector('.popup__input[name="name"]');
 let jobInput = document.querySelector('.popup__input[name="job"]');
+let profileName = document.querySelector('.profile__title');
+let profileJob = document.querySelector('.profile__subtitle');
 
-editButton.addEventListener("click", toggle);
+editButton.addEventListener('click', toggle);
 
-closeButton.addEventListener("click", toggle);
+closeButton.addEventListener('click', toggle);
 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
 
 function toggle() {
   popup.classList.toggle('popup_opened');
@@ -17,13 +19,13 @@ function toggle() {
 }
 
 function setNameAndJob() {
-  let profileName  = document.querySelector('.profile__title').textContent;
-  let profileJob  = document.querySelector('.profile__subtitle').textContent;
-  nameInput.value = profileName;
-  jobInput.value = profileJob;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
-function formSubmitHandler (evt) {
-  evt.preventDefault(); 
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  toggle();
 }
-
