@@ -17,4 +17,4 @@ _Java Script_
 
 Now you can change the profile data and save it.
 
-Please, follow the link:
+Please, follow the link: https://aleksaier.github.io/mesto/
