@@ -6,10 +6,17 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
-  border: #FFFFFF 1px solid;
-  transition: opacity .2s ease-in-out;
+  border: #ffffff 1px solid;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .profile__edit-button:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 725px) {
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+  }
 }

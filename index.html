@@ -21,55 +21,55 @@
         <div class="profile__info">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <div class="profile__edit-button"></div>
+            <button class="profile__edit-button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
 
         </div>
 
-        <div class="profile__add-button"></div>
+        <button class="profile__add-button"></button>
       </section>
       <section class="elements">
         <div class="element">
           <img class="element__picture" src="./images/karachaevsk.jpg" alt="Карачаевск" />
           <div class="element__container">
             <h2 class="element__title">Карачаевск</h2>
-            <div class="element__like element__like_active"></div>
+            <button class="element__like element__like_active"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__picture" src="./images/elbrus_moutain.jpg" alt="Гора Эльбрус" />
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like"></div>
+            <button class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__picture" src="./images/dombai.jpg" alt="Домбай" />
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
-            <div class="element__like"></div>
+            <button class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__picture" src="./images/krasnoyarsk.jpg" alt="Красноярск" />
           <div class="element__container">
             <h2 class="element__title">Красноярск</h2>
-            <div class="element__like"></div>
+            <button class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__picture" src="./images/vladivostok.jpg" alt="Владивосток" />
           <div class="element__container">
             <h2 class="element__title">Владивосток</h2>
-            <div class="element__like"></div>
+            <button class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__picture" src="./images/BaikalLake.jpg" alt="Озеро Байкал" />
           <div class="element__container">
             <h2 class="element__title">Озеро Байкал</h2>
-            <div class="element__like"></div>
+            <button class="element__like"></button>
           </div>
         </div>
       </section>
@@ -81,15 +81,17 @@
 
   </div>
   <div class="popup">
-    <form class="popup__container">
-      <div class="popup__close"></div>
-      <span class="popup__title">Редактировать профиль</span>
-      <input class="popup__input" type="text" placeholder="Имя" name="name">
-      <input class="popup__input" type="text" placeholder="Работа" name="job">
-      <button class="popup__button" type="submit">Сохранить</button>
-    </form>
+    <div class="popup__container">
+      <button class="popup__close"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" action="">
+        <input class="popup__input" type="text" placeholder="Имя" name="name">
+        <input class="popup__input" type="text" placeholder="Работа" name="job">
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
   </div>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

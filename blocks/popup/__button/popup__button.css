@@ -3,13 +3,14 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #000000;
   padding: 14px 0 18px;
+  border: none;
   cursor: pointer;
   width: 100%;
-  margin-top: 48px;
-  transition: opacity .2s ease-in-out;
+  margin-top: 28px;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .popup__close:hover {
