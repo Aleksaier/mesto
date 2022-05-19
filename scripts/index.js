@@ -9,6 +9,8 @@ const profileJob = document.querySelector('.profile__subtitle');
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
 function closePopup(popupElement) {
@@ -17,8 +19,6 @@ function closePopup(popupElement) {
 
 editButton.addEventListener('click', function () {
   openPopup(popup);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
 });
 
 closeButton.addEventListener('click', function () {
