@@ -17,17 +17,24 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-editButton.addEventListener('click', function () {
+function onPopupOpenHandler() {
   openPopup(popup);
-});
+  return 5;
+}
 
-closeButton.addEventListener('click', function () {
+function onPopupCloseHandler() {
   closePopup(popup);
-});
+}
 
-formElement.addEventListener('submit', function (evt) {
+function onFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popup);
-});
+}
+
+editButton.addEventListener('click', onPopupOpenHandler);
+
+closeButton.addEventListener('click', onPopupCloseHandler);
+
+formElement.addEventListener('submit', onFormSubmitHandler);
