@@ -30,48 +30,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <div class="element">
-          <img class="element__picture" src="./images/karachaevsk.jpg" alt="Карачаевск" />
-          <div class="element__container">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like element__like_active" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__picture" src="./images/elbrus_moutain.jpg" alt="Гора Эльбрус" />
-          <div class="element__container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__picture" src="./images/dombai.jpg" alt="Домбай" />
-          <div class="element__container">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__picture" src="./images/krasnoyarsk.jpg" alt="Красноярск" />
-          <div class="element__container">
-            <h2 class="element__title">Красноярск</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__picture" src="./images/vladivostok.jpg" alt="Владивосток" />
-          <div class="element__container">
-            <h2 class="element__title">Владивосток</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__picture" src="./images/BaikalLake.jpg" alt="Озеро Байкал" />
-          <div class="element__container">
-            <h2 class="element__title">Озеро Байкал</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </div>
+
       </section>
     </main>
 
@@ -80,7 +39,7 @@
     </footer>
 
   </div>
-  <div class="popup">
+  <div class="popup" id="editPopup">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
@@ -91,6 +50,30 @@
       </form>
     </div>
   </div>
+
+  <div class="popup" id="addPopup">
+    <div class="popup__container">
+      <button class="popup__close" type="button"></button>
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form" action="-" name="elementEditing">
+        <input class="popup__input" type="text" placeholder="Название" name="title">
+        <input class="popup__input" type="text" placeholder="Ссылка на картинку" name="link">
+        <button class="popup__button" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <template id="element">
+    <div class="element">
+      <button class="element__delete" type="button"></button>
+      <img class="element__picture" />
+      <div class="element__container">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button"></button>
+      </div>
+    </div>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 
