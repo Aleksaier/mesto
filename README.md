@@ -15,6 +15,11 @@ _Java Script_
 - We used _functions_ to make the buttons work.
 - The Document Object Model (DOM) was used to interact with the page.
 
-Now you can change the profile data and save it.
+- You can change the profile data and save it.
+- Moreover, you can add a new card with the title.
+
+- The posibility to delete a card is also added.
+- You can mark the pictures you like.
+- All popups open and close smoothly.
 
 Please, follow the link: https://aleksaier.github.io/mesto/
