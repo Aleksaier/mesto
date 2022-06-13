@@ -22,4 +22,7 @@ _Java Script_
 - You can mark the pictures you like.
 - All popups open and close smoothly.
 
+- Form validation implemented.
+- Now you can close the popup by clicking on the background or esc.
+
 Please, follow the link: https://aleksaier.github.io/mesto/
