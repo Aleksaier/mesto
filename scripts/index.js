@@ -97,13 +97,13 @@ function openPopup(popup) {
   document.addEventListener('keyup', closePopupByEsc);
 }
 
-function openprofilePopup() {
+function openProfilePopup() {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 }
 
-function opencardCreatorPopup() {
+function openCardCreatorPopup() {
   openPopup(cardCreatorPopup);
 }
 
@@ -120,11 +120,12 @@ function handleCardFormSubmit(evt) {
   renderCard(createCard(titleInput.value, linkInput.value), cardsContainer);
   closePopup(evt);
   evt.target.reset();
+  enableValidation(config);
 }
 
-profileButton.addEventListener('click', openprofilePopup);
+profileButton.addEventListener('click', openProfilePopup);
 
-cardCreatorButton.addEventListener('click', opencardCreatorPopup);
+cardCreatorButton.addEventListener('click', openCardCreatorPopup);
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
