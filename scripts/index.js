@@ -1,3 +1,12 @@
+const config = {
+  inputErrorClass: 'popup__input_type_error',
+  errorElementActiveClass: 'popup__input-error_active',
+  buttonElementInactiveClass: 'popup__submit-button_inactive',
+  inputClass: '.popup__input',
+  buttonElementClass: '.popup__submit-button',
+  formClass: '.popup__form',
+};
+
 const cardTemplate = document.querySelector('#element').content;
 const cardsContainer = document.querySelector('.elements');
 const imagePopup = document.querySelector('.popup__image');
@@ -120,8 +129,10 @@ function handleCardFormSubmit(evt) {
   renderCard(createCard(titleInput.value, linkInput.value), cardsContainer);
   closePopup(evt);
   evt.target.reset();
-  enableValidation(config);
+  disableButtonState(evt.target.querySelector(config.buttonElementClass), config);
 }
+
+enableValidation(config);
 
 profileButton.addEventListener('click', openProfilePopup);
 
