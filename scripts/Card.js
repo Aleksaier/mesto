@@ -1,28 +1,54 @@
 class Card {
-  constructor(config, card, createCard) {
-    this._config = config;
-    this._card = card;
-    this._createCard = createCard;
+  constructor(name, link, cardConfig, openPopup) {
+    this._name = name;
+    this._link = link;
+    this._cardConfig = cardConfig;
+    this._openPopup = openPopup;
   }
 
-  _getTemplate() {
-    return document.querySelector(this._config.cardTemplate).content.children[0].cloneNode(true);
+  _getTemplate = () => document.querySelector(this._cardConfig.cardTemplateSelector).content;
+
+  _createCard() {
+    const cardElement = this._getTemplate()
+      .querySelector(this._cardConfig.cardSelector)
+      .cloneNode(true);
+    const cardImage = cardElement.querySelector(this._cardConfig.cardPictureSelector);
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+    cardElement.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
+
+    cardElement
+      .querySelector(this._cardConfig.cardDeleteSelector)
+      .addEventListener('click', this._deleteElement);
+    cardElement
+      .querySelector(this._cardConfig.cardLikeSelector)
+      .addEventListener('click', this._setIsFavourite);
+    cardImage.addEventListener('click', this._openImage);
+
+    return cardElement;
   }
 
-  addCard(name, link) {
-    name.render(this._view);
-  }
+  _deleteElement = (e) => e.currentTarget.closest(this._cardConfig.cardSelector).remove();
 
-  render(parent) {
-    this._view = this._getTemplate();
+  _setIsFavourite = (e) => e.currentTarget.classList.toggle(this._cardConfig.cardLikeActiveClass);
 
-    this._items.forEach((card) => {
-      const card = this._createCard(card.name);
+  _getGalleryPopup = () => document.querySelector(this._cardConfig.galleryPopupSelector);
 
-      card.render(this._view);
-    });
+  _openImage = (evt) => {
+    const imagePopup = document.querySelector(this._cardConfig.popupImageSelector);
+    imagePopup.src = evt.currentTarget.src;
+    imagePopup.alt = evt.currentTarget.alt;
+    document.querySelector(this._cardConfig.popupDescriptionSelector).textContent =
+      evt.currentTarget.alt;
+    this._openPopup(this._getGalleryPopup());
+  };
 
-    parent.append(this._view);
+  render(container, isAppend = false) {
+    if (isAppend) {
+      container.append(this._createCard());
+    } else {
+      container.prepend(this._createCard());
+    }
   }
 }
 
