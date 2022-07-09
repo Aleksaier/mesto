@@ -1,6 +1,6 @@
-import { disableButtonState, enableValidation } from './validate.js';
 import initialCards from './data.js';
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const config = {
   inputErrorClass: 'popup__input_type_error',
@@ -19,17 +19,29 @@ const cardConfig = {
   cardDeleteSelector: '.card__delete',
   cardLikeSelector: '.card__like',
   cardLikeActiveClass: 'card__like_active',
-  galleryPopupSelector: '#galleryPopup',
-  popupDescriptionSelector: '.popup__description',
-  popupImageSelector: '.popup__image',
 };
 
 const cardsContainer = document.querySelector('.cards');
 
+const galleryPopup = document.querySelector('#galleryPopup');
+
+const galleryPopupImage = galleryPopup.querySelector('.popup__image');
+const galleryPopupDescription = galleryPopup.querySelector('.popup__description');
+
+const onImageClick = (evt) => {
+  galleryPopupImage.src = evt.currentTarget.src;
+  galleryPopupImage.alt = evt.currentTarget.alt;
+  galleryPopupDescription.textContent = evt.currentTarget.alt;
+  openPopup(galleryPopup);
+};
+
 initialCards.forEach((element) => {
-  const newCard = new Card(element.name, element.link, cardConfig, openPopup);
-  newCard.render(cardsContainer, true);
+  new Card(element.name, element.link, cardConfig, onImageClick).render(cardsContainer, true);
 });
+
+Array.from(document.querySelectorAll(config.formClass)).forEach((formElement) =>
+  formElement.addEventListener('submit', (evt) => evt.preventDefault())
+);
 
 // popups
 
@@ -75,6 +87,9 @@ function openPopup(popup) {
   popup.querySelector('.popup__close-button').addEventListener('click', closePopup);
   popup.addEventListener('click', closePopupByOverlay);
   document.addEventListener('keyup', closePopupByEsc);
+
+  const formElement = popup.querySelector(config.formClass);
+  if (formElement) new FormValidator(config, formElement).enableValidation();
 }
 
 function openProfilePopup() {
@@ -101,10 +116,7 @@ function handleCardFormSubmit(evt) {
   newCard.render(cardsContainer);
   closePopup(evt);
   evt.target.reset();
-  disableButtonState(evt.target.querySelector(config.buttonElementClass), config);
 }
-
-enableValidation(config);
 
 profileButton.addEventListener('click', openProfilePopup);
 

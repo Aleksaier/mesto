@@ -1,9 +1,9 @@
 class Card {
-  constructor(name, link, cardConfig, openPopup) {
+  constructor(name, link, cardConfig, onImageClick) {
     this._name = name;
     this._link = link;
     this._cardConfig = cardConfig;
-    this._openPopup = openPopup;
+    this._onImageClick = onImageClick;
   }
 
   _getTemplate = () => document.querySelector(this._cardConfig.cardTemplateSelector).content;
@@ -23,7 +23,7 @@ class Card {
     cardElement
       .querySelector(this._cardConfig.cardLikeSelector)
       .addEventListener('click', this._setIsFavourite);
-    cardImage.addEventListener('click', this._openImage);
+    cardImage.addEventListener('click', this._onImageClick);
 
     return cardElement;
   }
@@ -31,17 +31,6 @@ class Card {
   _deleteElement = (e) => e.currentTarget.closest(this._cardConfig.cardSelector).remove();
 
   _setIsFavourite = (e) => e.currentTarget.classList.toggle(this._cardConfig.cardLikeActiveClass);
-
-  _getGalleryPopup = () => document.querySelector(this._cardConfig.galleryPopupSelector);
-
-  _openImage = (evt) => {
-    const imagePopup = document.querySelector(this._cardConfig.popupImageSelector);
-    imagePopup.src = evt.currentTarget.src;
-    imagePopup.alt = evt.currentTarget.alt;
-    document.querySelector(this._cardConfig.popupDescriptionSelector).textContent =
-      evt.currentTarget.alt;
-    this._openPopup(this._getGalleryPopup());
-  };
 
   render(container, isAppend = false) {
     if (isAppend) {
