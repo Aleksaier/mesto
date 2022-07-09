@@ -1,3 +1,6 @@
+import enableValidation from './validate.js';
+import initialCards from './data.js';
+
 const config = {
   inputErrorClass: 'popup__input_type_error',
   errorElementActiveClass: 'popup__input-error_active',
@@ -7,19 +10,19 @@ const config = {
   formClass: '.popup__form',
 };
 
-const cardTemplate = document.querySelector('#element').content;
-const cardsContainer = document.querySelector('.elements');
+const cardTemplate = document.querySelector('#card').content;
+const cardsContainer = document.querySelector('.cards');
 const imagePopup = document.querySelector('.popup__image');
 
 // delete
 
-const getElementByEvent = (e) => e.currentTarget.closest('.element');
+const getElementByEvent = (e) => e.currentTarget.closest('.card');
 
 const deleteElement = (e) => getElementByEvent(e).remove();
 
 // likes
 
-const setIsFavourite = (e) => e.currentTarget.classList.toggle('element__like_active');
+const setIsFavourite = (e) => e.currentTarget.classList.toggle('card__like_active');
 
 // opening of image
 
@@ -38,8 +41,8 @@ const profileDescription = document.querySelector('.profile__subtitle');
 const cardCreatorButton = document.querySelector('.profile__add-button');
 const cardCreatorPopup = document.querySelector('#cardCreatorPopup');
 const cardForm = cardCreatorPopup.querySelector('.popup__container');
-const cardTitle = document.querySelector('.element__title');
-const cardPicture = document.querySelector('.element__picture');
+const cardTitle = document.querySelector('.card__title');
+const cardPicture = document.querySelector('.card__picture');
 const titleInput = cardCreatorPopup.querySelector('.popup__input[name="title"]');
 const linkInput = cardCreatorPopup.querySelector('.popup__input[name="link"]');
 
@@ -86,14 +89,14 @@ function renderCard(cardElement, container, isAppend = false) {
 }
 
 function createCard(nameValue, linkValue) {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardImage = cardElement.querySelector('.element__picture');
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__picture');
   cardImage.src = linkValue;
   cardImage.alt = nameValue;
-  cardElement.querySelector('.element__title').textContent = nameValue;
+  cardElement.querySelector('.card__title').textContent = nameValue;
 
-  cardElement.querySelector('.element__delete').addEventListener('click', deleteElement);
-  cardElement.querySelector('.element__like').addEventListener('click', setIsFavourite);
+  cardElement.querySelector('.card__delete').addEventListener('click', deleteElement);
+  cardElement.querySelector('.card__like').addEventListener('click', setIsFavourite);
   cardImage.addEventListener('click', openImage);
 
   return cardElement;

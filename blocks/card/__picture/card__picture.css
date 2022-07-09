@@ -1,4 +1,4 @@
-.element__picture {
+.card__picture {
   width: 100%;
   height: 282px;
   object-fit: cover;
@@ -6,6 +6,6 @@
   cursor: pointer;
 }
 
-.element__picture:hover {
+.card__picture:hover {
   opacity: 0.9;
 }

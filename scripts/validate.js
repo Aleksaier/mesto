@@ -58,3 +58,5 @@ const enableValidation = (config) => {
     setEventListeners(formElement, config);
   });
 };
+
+export default enableValidation;

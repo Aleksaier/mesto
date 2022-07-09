@@ -1,17 +1,15 @@
-.element__delete {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.card__like {
   background: none;
   cursor: pointer;
-  background-image: url(../../../images/trash.svg);
-  width: 18px;
+  background-image: url(../../../images/like.svg);
+  background-size: contain;
+  width: 22px;
   height: 19px;
   border: none;
   background-repeat: no-repeat;
   transition: opacity 0.2s ease-in-out;
 }
 
-.element__delete:hover {
+.card__like:hover {
   opacity: 0.5;
 }
