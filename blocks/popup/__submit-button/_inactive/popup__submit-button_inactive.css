@@ -1,9 +1,14 @@
 .popup__submit-button_inactive {
-  background: rgba(0, 0, 0, 0.8);
-  background: #ededed;
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.popup__submit-button_inactive:disabled {
+  cursor: default;
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  color: #c4c4c4;
 }
