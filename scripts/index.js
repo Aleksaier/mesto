@@ -36,12 +36,22 @@ const onImageClick = (evt) => {
 };
 
 initialCards.forEach((element) => {
-  new Card(element.name, element.link, cardConfig, onImageClick).render(cardsContainer, true);
+  const newCardElement = new Card(
+    element.name,
+    element.link,
+    cardConfig,
+    onImageClick
+  ).createCard();
+  renderCard(newCardElement, cardsContainer, true);
 });
 
-Array.from(document.querySelectorAll(config.formClass)).forEach((formElement) =>
-  formElement.addEventListener('submit', (evt) => evt.preventDefault())
-);
+function renderCard(cardElement, container, isAppend = false) {
+  if (isAppend) {
+    container.append(cardElement);
+  } else {
+    container.prepend(cardElement);
+  }
+}
 
 // popups
 
@@ -58,6 +68,9 @@ const cardCreatorPopup = document.querySelector('#cardCreatorPopup');
 const cardForm = cardCreatorPopup.querySelector('.popup__container');
 const titleInput = cardCreatorPopup.querySelector('.popup__input[name="title"]');
 const linkInput = cardCreatorPopup.querySelector('.popup__input[name="link"]');
+
+enablePopupValidation(profilePopup);
+enablePopupValidation(cardCreatorPopup);
 
 const closePopup = (evt) => {
   const popup = evt.target.closest('.popup');
@@ -87,9 +100,11 @@ function openPopup(popup) {
   popup.querySelector('.popup__close-button').addEventListener('click', closePopup);
   popup.addEventListener('click', closePopupByOverlay);
   document.addEventListener('keyup', closePopupByEsc);
+}
 
+function enablePopupValidation(popup) {
   const formElement = popup.querySelector(config.formClass);
-  if (formElement) new FormValidator(config, formElement).enableValidation();
+  new FormValidator(config, formElement).enableValidation();
 }
 
 function openProfilePopup() {
@@ -112,8 +127,13 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const newCard = new Card(titleInput.value, linkInput.value, cardConfig, openPopup);
-  newCard.render(cardsContainer);
+  const newCardElement = new Card(
+    titleInput.value,
+    linkInput.value,
+    cardConfig,
+    onImageClick
+  ).createCard();
+  renderCard(newCardElement, cardsContainer);
   closePopup(evt);
   evt.target.reset();
 }

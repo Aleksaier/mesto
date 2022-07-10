@@ -8,37 +8,32 @@ class Card {
 
   _getTemplate = () => document.querySelector(this._cardConfig.cardTemplateSelector).content;
 
-  _createCard() {
-    const cardElement = this._getTemplate()
+  createCard() {
+    this._cardElement = this._getTemplate()
       .querySelector(this._cardConfig.cardSelector)
       .cloneNode(true);
-    const cardImage = cardElement.querySelector(this._cardConfig.cardPictureSelector);
+    const cardImage = this._cardElement.querySelector(this._cardConfig.cardPictureSelector);
     cardImage.src = this._link;
     cardImage.alt = this._name;
-    cardElement.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
+    this._cardElement.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
 
-    cardElement
+    this._cardElement
       .querySelector(this._cardConfig.cardDeleteSelector)
       .addEventListener('click', this._deleteElement);
-    cardElement
+    this._cardElement
       .querySelector(this._cardConfig.cardLikeSelector)
       .addEventListener('click', this._setIsFavourite);
     cardImage.addEventListener('click', this._onImageClick);
 
-    return cardElement;
+    return this._cardElement;
   }
 
-  _deleteElement = (e) => e.currentTarget.closest(this._cardConfig.cardSelector).remove();
+  _deleteElement = () => {
+    this._cardElement.remove();
+    this._cardElement = null;
+  };
 
   _setIsFavourite = (e) => e.currentTarget.classList.toggle(this._cardConfig.cardLikeActiveClass);
-
-  render(container, isAppend = false) {
-    if (isAppend) {
-      container.append(this._createCard());
-    } else {
-      container.prepend(this._createCard());
-    }
-  }
 }
 
 export default Card;
