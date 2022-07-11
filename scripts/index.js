@@ -35,13 +35,10 @@ const onImageClick = (evt) => {
   openPopup(galleryPopup);
 };
 
+const getNewCard = (name, link) => new Card(name, link, cardConfig, onImageClick).createCard();
+
 initialCards.forEach((element) => {
-  const newCardElement = new Card(
-    element.name,
-    element.link,
-    cardConfig,
-    onImageClick
-  ).createCard();
+  const newCardElement = getNewCard(element.name, element.link);
   renderCard(newCardElement, cardsContainer, true);
 });
 
@@ -70,7 +67,7 @@ const titleInput = cardCreatorPopup.querySelector('.popup__input[name="title"]')
 const linkInput = cardCreatorPopup.querySelector('.popup__input[name="link"]');
 
 enablePopupValidation(profilePopup);
-enablePopupValidation(cardCreatorPopup);
+const cardCreatorPopupFormValidator = enablePopupValidation(cardCreatorPopup);
 
 const closePopup = (evt) => {
   const popup = evt.target.closest('.popup');
@@ -104,7 +101,9 @@ function openPopup(popup) {
 
 function enablePopupValidation(popup) {
   const formElement = popup.querySelector(config.formClass);
-  new FormValidator(config, formElement).enableValidation();
+  const formValidator = new FormValidator(config, formElement);
+  formValidator.enableValidation();
+  return formValidator;
 }
 
 function openProfilePopup() {
@@ -127,15 +126,11 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const newCardElement = new Card(
-    titleInput.value,
-    linkInput.value,
-    cardConfig,
-    onImageClick
-  ).createCard();
+  const newCardElement = getNewCard(titleInput.value, linkInput.value);
   renderCard(newCardElement, cardsContainer);
   closePopup(evt);
   evt.target.reset();
+  cardCreatorPopupFormValidator.disableButtonState();
 }
 
 profileButton.addEventListener('click', openProfilePopup);
