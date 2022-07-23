@@ -1,9 +1,9 @@
 class Card {
-  constructor(name, link, cardConfig, onImageClick) {
+  constructor(name, link, cardConfig, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardConfig = cardConfig;
-    this._onImageClick = onImageClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate = () => document.querySelector(this._cardConfig.cardTemplateSelector).content;
@@ -23,7 +23,7 @@ class Card {
     this._cardElement
       .querySelector(this._cardConfig.cardLikeSelector)
       .addEventListener('click', this._setIsFavourite);
-    cardImage.addEventListener('click', this._onImageClick);
+    cardImage.addEventListener('click', this._handleCardClick);
 
     return this._cardElement;
   }
@@ -33,7 +33,10 @@ class Card {
     this._cardElement = null;
   };
 
-  _setIsFavourite = (e) => e.currentTarget.classList.toggle(this._cardConfig.cardLikeActiveClass);
+  _setIsFavourite = () =>
+    this._cardElement
+      .querySelector(this._cardConfig.cardLikeSelector)
+      .classList.toggle(this._cardConfig.cardLikeActiveClass);
 }
 
 export default Card;
