@@ -17,12 +17,12 @@ class Card {
     cardImage.alt = this._name;
     this._cardElement.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
 
+    this._cardLikeElement = this._cardElement.querySelector(this._cardConfig.cardLikeSelector);
+
     this._cardElement
       .querySelector(this._cardConfig.cardDeleteSelector)
       .addEventListener('click', this._deleteElement);
-    this._cardElement
-      .querySelector(this._cardConfig.cardLikeSelector)
-      .addEventListener('click', this._setIsFavourite);
+    this._cardLikeElement.addEventListener('click', this._setIsFavourite);
     cardImage.addEventListener('click', this._handleCardClick);
 
     return this._cardElement;
@@ -31,12 +31,11 @@ class Card {
   _deleteElement = () => {
     this._cardElement.remove();
     this._cardElement = null;
+    this._cardLikeElement = null;
   };
 
   _setIsFavourite = () =>
-    this._cardElement
-      .querySelector(this._cardConfig.cardLikeSelector)
-      .classList.toggle(this._cardConfig.cardLikeActiveClass);
+    this._cardLikeElement.classList.toggle(this._cardConfig.cardLikeActiveClass);
 }
 
 export default Card;

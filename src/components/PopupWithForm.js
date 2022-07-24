@@ -20,10 +20,6 @@ export default class PopupWithForm extends Popup {
     }, {});
   }
 
-  setInputValues(inputName, inputValue) {
-    Array.from(this._inputElements).find((input) => input.name == inputName).value = inputValue;
-  }
-
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener('submit', this._onFormSubmit);
@@ -34,8 +30,9 @@ export default class PopupWithForm extends Popup {
     this._formElement.reset();
   }
 
-  _removeEventListeners() {
-    super._removeEventListeners();
-    this._formElement.removeEventListener('submit', this._onFormSubmit);
+  setInputValues(data) {
+    Array.from(this._inputElements).forEach((input) => {
+      input.value = data[input.name];
+    });
   }
 }

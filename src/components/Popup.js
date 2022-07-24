@@ -8,7 +8,6 @@ export default class Popup {
     this.close = this.close.bind(this);
     this._handleOverlayClose = this._handleOverlayClose.bind(this);
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._removeEventListeners = this._removeEventListeners.bind(this);
   }
 
   _handleEscClose(evt) {
@@ -25,23 +24,16 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add('popup_opened');
-    this.setEventListeners();
+    document.addEventListener('keyup', this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove('popup_opened');
-    this._removeEventListeners();
+    document.removeEventListener('keyup', this._handleEscClose);
   }
 
   setEventListeners() {
     this._popupCloseButtonElement.addEventListener('click', this.close);
     this._popupElement.addEventListener('click', this._handleOverlayClose);
-    document.addEventListener('keyup', this._handleEscClose);
-  }
-
-  _removeEventListeners() {
-    this._popupCloseButtonElement.removeEventListener('click', this.close);
-    this._popupElement.removeEventListener('click', this._handleOverlayClose);
-    document.removeEventListener('keyup', this._handleEscClose);
   }
 }
