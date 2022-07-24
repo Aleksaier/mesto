@@ -38,7 +38,7 @@ section.renderItems();
 
 function renderCard(name, link) {
   const newCard = getNewCard(name, link);
-  section.addItem(newCard);
+  this.addItem(newCard);
 }
 
 // popups
