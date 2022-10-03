@@ -16,7 +16,8 @@
 
     <main class="content">
       <section class="profile">
-        <div class="profile__avatar-container"><img class="profile__avatar" src="" alt="Аватар" /></div>
+        <div class="profile__avatar-container"><img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>"
+            alt="Аватар" /></div>
         <div class="profile__info">
           <div class="profile__title-container">
             <h1 class="profile__title"></h1>
@@ -88,7 +89,8 @@
       <form class="popup__form" action="-" name="elementEditing" novalidate>
         <div class="popup__fields">
           <label class="popup__field">
-            <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="link" id="url-input" required>
+            <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="link" id="avatar-input"
+              required>
             <span class="url-input-error popup__input-error"></span>
           </label>
         </div>
