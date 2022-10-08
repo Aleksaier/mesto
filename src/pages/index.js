@@ -20,8 +20,8 @@ const avatarElement = document.querySelector('.profile__avatar-container');
 
 const popupDelete = document.querySelector('#deletePopup');
 
-const deletePopupWithConfirmation = new PopupWithConfirmation('#deletePopup');
-deletePopupWithConfirmation.setEventListeners();
+const popupDeleteWithConfirmation = new PopupWithConfirmation('#deletePopup');
+popupDeleteWithConfirmation.setEventListeners();
 
 const popupWithImage = new PopupWithImage('#popupWithImage');
 popupWithImage.setEventListeners();
@@ -34,13 +34,17 @@ const api = new Api(apiConfig);
 
 const promises = [getUserInfo(), getAllCards()];
 
-Promise.all(promises).then(([data, cards]) => {
-  userData = data;
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
-  cards.reverse();
-  cards.forEach((data) => renderCard(data, userData._id));
-});
+Promise.all(promises)
+  .then(([data, cards]) => {
+    userData = data;
+    userInfo.setUserInfo(data.name, data.about);
+    userInfo.setUserAvatar(data.avatar);
+    cards.reverse();
+    cards.forEach((data) => renderCard(data, userData._id));
+  })
+  .catch((err) => {
+    console.log('Ошибка', err);
+  });
 
 const getNewCard = (data, userId) =>
   new Card({
@@ -56,20 +60,20 @@ const getNewCard = (data, userId) =>
     handleCardClick: (cardInstance) =>
       popupWithImage.open(cardInstance.getCardName(), cardInstance.getCardLink()),
     handleDelete: (cardInstance) => {
-      deletePopupWithConfirmation.setOnFormSubmitAction(() => {
+      popupDeleteWithConfirmation.setOnFormSubmitAction(() => {
         const button = getButton(popupDelete);
         const prevButtonText = button.textContent;
         changeButtonSubmit(button, 'Удаление...');
         deleteCard(cardInstance.getCardId())
           .then(() => {
             cardInstance.removeCard();
-            deletePopupWithConfirmation.close();
+            popupDeleteWithConfirmation.close();
           })
           .finally(() => {
             changeButtonSubmit(button, prevButtonText);
           });
       });
-      deletePopupWithConfirmation.open();
+      popupDeleteWithConfirmation.open();
     },
     cardConfig,
   }).createCard();
@@ -174,57 +178,27 @@ function getButton(buttonContainer) {
 }
 
 function getUserInfo() {
-  return api
-    .getUserInfo()
-    .then((data) => data)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.getUserInfo().then((data) => data);
 }
 
 function getAllCards() {
-  return api
-    .getAllCards()
-    .then((data) => data)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.getAllCards().then((data) => data);
 }
 
 function addFavourite(cardId) {
-  return api
-    .addLike(cardId)
-    .then(({ likes }) => likes)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.addLike(cardId).then(({ likes }) => likes);
 }
 
 function removeFavourite(cardId) {
-  return api
-    .deleteLike(cardId)
-    .then(({ likes }) => likes)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.deleteLike(cardId).then(({ likes }) => likes);
 }
 
 function addCard(title, link) {
-  return api
-    .addNewCard(title, link)
-    .then((data) => data)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.addNewCard(title, link).then((data) => data);
 }
 
 function deleteCard(cardId) {
-  return api
-    .deleteCard(cardId)
-    .then((data) => data)
-    .catch((err) => {
-      console.log('Ошибка', err);
-    });
+  return api.deleteCard(cardId).then((data) => data);
 }
 
 avatarElement.addEventListener('click', openAvatarEditPopup);
