@@ -18,9 +18,9 @@ const cardCreatorPopup = document.querySelector('#cardCreatorPopup');
 const avatarEditPopup = document.querySelector('#avatarEditPopup');
 const avatarElement = document.querySelector('.profile__avatar-container');
 
-const popupDelete = document.querySelector('#deletePopup');
+const popupDelete = document.querySelector('#popupDelete');
 
-const popupDeleteWithConfirmation = new PopupWithConfirmation('#deletePopup');
+const popupDeleteWithConfirmation = new PopupWithConfirmation('#popupDelete');
 popupDeleteWithConfirmation.setEventListeners();
 
 const popupWithImage = new PopupWithImage('#popupWithImage');
@@ -52,9 +52,17 @@ const getNewCard = (data, userId) =>
     userId,
     handleFavouriteClick: (cardInstance) => {
       if (cardInstance.getIsLiked()) {
-        removeFavourite(cardInstance.getCardId()).then(cardInstance.setLikes);
+        removeFavourite(cardInstance.getCardId())
+          .then(cardInstance.setLikes)
+          .catch((err) => {
+            console.log('Ошибка', err);
+          });
       } else {
-        addFavourite(cardInstance.getCardId()).then(cardInstance.setLikes);
+        addFavourite(cardInstance.getCardId())
+          .then(cardInstance.setLikes)
+          .catch((err) => {
+            console.log('Ошибка', err);
+          });
       }
     },
     handleCardClick: (cardInstance) =>
@@ -68,6 +76,9 @@ const getNewCard = (data, userId) =>
           .then(() => {
             cardInstance.removeCard();
             popupDeleteWithConfirmation.close();
+          })
+          .catch((err) => {
+            console.log('Ошибка', err);
           })
           .finally(() => {
             changeButtonSubmit(button, prevButtonText);
