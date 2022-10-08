@@ -43,7 +43,7 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" action="-" name="profileEditing" novalidate>
+      <form class="popup__form" action="-" name="profileEditor" novalidate>
         <div class="popup__fields">
           <label class="popup__field">
             <input class="popup__input" type="text" placeholder="Имя" name="name" id="name-input" required minlength="2"
@@ -65,7 +65,7 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" action="-" name="elementEditing" novalidate>
+      <form class="popup__form" action="-" name="cardCreator" novalidate>
         <div class="popup__fields">
           <label class="popup__field">
             <input class="popup__input" type="text" placeholder="Название" name="title" id="title-input" required
@@ -86,12 +86,12 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h3 class="popup__title">Обновить аватар</h3>
-      <form class="popup__form" action="-" name="elementEditing" novalidate>
+      <form class="popup__form" action="-" name="avatarEditor" novalidate>
         <div class="popup__fields">
           <label class="popup__field">
             <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="link" id="avatar-input"
               required>
-            <span class="url-input-error popup__input-error"></span>
+            <span class="avatar-input-error popup__input-error"></span>
           </label>
         </div>
         <button class="popup__submit-button" type="submit">Сохранить</button>
@@ -112,7 +112,7 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h3 class="popup__title">Вы уверены?</h3>
-      <form class="popup__form" action="-" name="elementDeleting" novalidate>
+      <form class="popup__form" action="-" name="cardDelete" novalidate>
         <button class="popup__submit-button" type="submit">Да</button>
       </form>
     </div>
